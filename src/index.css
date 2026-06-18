@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #031414;
+  --color-brand-surface: #062423;
+  --color-brand-primary: #063231;
+  --color-brand-primary-light: #0b4a48;
+  --color-brand-accent: #cbff54;
+  --color-brand-accent-hover: #d8ff80;
+
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #031414;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #031414;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #063231;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cbff54;
+}
+
+/* -----------------------------------------------
+   INFINITE MARQUEE RIBBON
+------------------------------------------------ */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+
+/* -----------------------------------------------
+   CERTIFICATIONS SLIDER — continuous auto-scroll,
+   pauses on hover so cards can be read
+------------------------------------------------ */
+@keyframes certScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-cert-scroll {
+  animation: certScroll 32s linear infinite;
+}
+
+/* -----------------------------------------------
+   HERO BACKGROUND PHOTO CROSSFADE
+   Each photo fades in, holds, then fades out as the
+   next one (new key) mounts underneath it.
+------------------------------------------------ */
+@keyframes imageFade {
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-image-slot {
+  animation: imageFade 4s ease-in-out forwards;
+}
