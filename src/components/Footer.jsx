@@ -7,9 +7,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[2fr_1fr_1fr] gap-10 sm:gap-12 mb-10 sm:mb-12">
           <div>
-            <h3 className="font-heading font-extrabold tracking-tight flex flex-col leading-tight mb-4">
-              <span className="text-xl sm:text-2xl">WAJAHAT</span>
-              <span className="text-[0.6rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em]">SIDDIQUE<span className="text-brand-accent">.</span></span>
+            <h3 className="inline-flex items-center font-heading font-extrabold text-xl sm:text-2xl tracking-tight mb-4">
+              <span className="w-5 h-5 sm:w-6 sm:h-6 rounded bg-brand-accent/20 border border-brand-accent/30 flex items-center justify-center text-brand-accent font-bold text-[0.55rem] sm:text-xs flex-shrink-0">WS</span>
+              <span className="ml-2.5">WAJAHAT SIDDIQUE<span className="bg-brand-accent inline-block" style={{ width: 7, height: 7, borderRadius: '1px', marginLeft: 2, verticalAlign: 'baseline' }}></span></span>
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
               Specialized consultation and enterprise strategy for data & analytics transformation using SAP technologies.

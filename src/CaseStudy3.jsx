@@ -84,7 +84,7 @@ export default function CaseStudy3() {
           <img src="/images/hero-image-3.png" alt="" className="w-full h-full object-cover object-top" style={{ transform: 'scale(1.06) translateY(-3%)' }} />
         </div>
         <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(3,20,20,0.45) 0%, rgba(3,20,20,0.92) 75%)' }}></div>
-        <div className="max-w-7xl w-full mr-auto ml-4 sm:ml-6 relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-4 sm:mb-6 max-w-3xl">
             Data Modernization &amp; <span className="text-brand-accent">Cloud Analytics</span>
           </h1>

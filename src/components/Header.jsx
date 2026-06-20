@@ -38,10 +38,8 @@ export default function Header({ caseStudies, trainings }) {
     dropdownTimer.current = setTimeout(() => setActiveDropdown(null), 150);
   };
 
-  const bgOpacity = Math.min(scrollY / 200, 0.95);
-  const headerBg = scrollY > 10
-    ? `rgba(3, 20, 20, ${bgOpacity})`
-    : 'transparent';
+  const bgOpacity = Math.min(0.82 + scrollY / 400, 0.96);
+  const headerBg = `rgba(3, 20, 20, ${bgOpacity})`;
   const headerBorder = scrollY > 50
     ? 'rgba(203, 255, 84, 0.1)'
     : 'transparent';
@@ -90,9 +88,9 @@ export default function Header({ caseStudies, trainings }) {
     >
       <div className="relative w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
-          <a href="/" onClick={handleHome} className="font-heading font-extrabold tracking-tight whitespace-nowrap flex flex-col leading-tight">
-            <span className="text-xl sm:text-2xl">WAJAHAT</span>
-            <span className="text-[0.6rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em]">SIDDIQUE<span className="text-brand-accent">.</span></span>
+          <a href="/" onClick={handleHome} className="inline-flex items-center font-heading font-extrabold text-xl sm:text-2xl tracking-tight whitespace-nowrap">
+            <span className="w-5 h-5 sm:w-6 sm:h-6 rounded bg-brand-accent/20 border border-brand-accent/30 flex items-center justify-center text-brand-accent font-bold text-[0.55rem] sm:text-xs flex-shrink-0">WS</span>
+            <span className="ml-2.5">WAJAHAT SIDDIQUE<span className="bg-brand-accent inline-block" style={{ width: 7, height: 7, borderRadius: '1px', marginLeft: 2, verticalAlign: 'baseline' }}></span></span>
           </a>
 
           <nav className="hidden md:flex items-center gap-4 lg:gap-8">
