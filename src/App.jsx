@@ -139,6 +139,7 @@ export default function App() {
         <Route path="/" element={
           <Home
             bookingStatus={bookingStatus}
+            setBookingStatus={setBookingStatus}
             formData={formData}
             setFormData={setFormData}
             handleBookingSubmit={handleBookingSubmit}

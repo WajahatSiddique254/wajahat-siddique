@@ -122,7 +122,7 @@ const certificates = [
   { name: 'SAP Business Data Cloud', img: '/images/certificate-07.png' },
 ];
 
-export default function Home({ bookingStatus, formData, setFormData, handleBookingSubmit }) {
+export default function Home({ bookingStatus, setBookingStatus, formData, setFormData, handleBookingSubmit }) {
   const navigate = useNavigate();
   const [expertiseIndex, setExpertiseIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
@@ -139,6 +139,7 @@ export default function Home({ bookingStatus, formData, setFormData, handleBooki
     '/images/hero-image-1.png',
     '/images/hero-image-2.png',
     '/images/hero-image-3.png',
+    '/images/hero-image-4.png',
   ];
 
   useEffect(() => {
@@ -156,7 +157,7 @@ export default function Home({ bookingStatus, formData, setFormData, handleBooki
     onClick: () => navigate(cs.path)
   }));
 
-  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => {} }));
+  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => { } }));
 
   return (
     <>
