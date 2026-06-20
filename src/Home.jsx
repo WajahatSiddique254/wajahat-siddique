@@ -197,8 +197,8 @@ export default function Home({ bookingStatus, formData, setFormData, handleBooki
           <Reveal>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center mb-16 sm:mb-20">
               <div
-                className="rounded-3xl overflow-hidden border border-brand-accent/10 aspect-[4/5] md:aspect-auto md:h-[420px] lg:h-[480px]"
-                style={{ background: 'radial-gradient(circle at 50% 32%, rgba(11,74,72,0.45) 0%, rgba(3,20,20,0.95) 70%)' }}
+                className="rounded-3xl overflow-hidden border border-brand-accent/10 aspect-[4/5] md:aspect-auto md:h-[500px] lg:h-[580px]"
+                style={{ background: 'radial-gradient(circle at 50% 32%, rgba(203,255,84,0.15) 0%, rgba(203,255,84,0.05) 70%)' }}
               >
                 <img src="/images/profile-image.png" alt="Wajahat" className="w-full h-full object-contain p-6 sm:p-8" />
               </div>
@@ -210,14 +210,23 @@ export default function Home({ bookingStatus, formData, setFormData, handleBooki
                   </span>
                   <span className="font-heading text-sm font-medium text-slate-300 tracking-wide">About Wajahat</span>
                 </div>
-                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-6">
-                  A Journey Guided by <span className="text-brand-accent">Purpose</span>
+                <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-4">
+                  Building the Foundation for <span className="text-brand-accent">Data-Driven Enterprises</span>
                 </h2>
-                <p className="text-slate-300 leading-relaxed mb-4 text-sm sm:text-base">
-                  I began my technology journey with a core belief: software should act as a force multiplier for organizations. Over the years, I've specialized in integrating AI frameworks that optimize workflows and transform operations.
+                <p className="text-slate-300 leading-relaxed mb-3 text-sm sm:text-base">
+                  Organizations do not become data-driven by implementing technology alone. They become data-driven when the right data, analytics, planning processes, and people come together to support better decisions.
+                </p>
+                <p className="text-slate-300 leading-relaxed mb-3 text-sm sm:text-base">
+                  I help organizations build that foundation.
+                </p>
+                <p className="text-slate-300 leading-relaxed mb-3 text-sm sm:text-base">
+                  From executive analytics and enterprise planning to cloud data platforms and AI-ready architectures, I work with business and technology leaders to transform data into a strategic asset.
+                </p>
+                <p className="text-slate-300 leading-relaxed mb-3 text-sm sm:text-base">
+                  My experience spans Retail, FMCG, Manufacturing, Telecommunications, Utilities, and Public Sector organizations, delivering solutions that improve visibility, accelerate decision-making, and create long-term business value.
                 </p>
                 <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                  My work concentrates on constructing multi-agent architectures, automating complex decision logic, and helping companies adapt safely to the digital age.
+                  By combining business understanding with deep expertise across the SAP Data & Analytics ecosystem, I help organizations move beyond reporting and toward intelligent, insight-driven decision-making.
                 </p>
               </div>
             </div>
