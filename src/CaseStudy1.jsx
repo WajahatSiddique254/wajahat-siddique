@@ -97,6 +97,7 @@ export default function CaseStudy1() {
 
       <Reveal delay={100} direction="left">
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-brand-surface/10 border-y border-brand-accent/10">
+          <div className="max-w-7xl mx-auto">
             <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">
               Business <span className="text-brand-accent">Challenges Addressed</span>
             </h2>
