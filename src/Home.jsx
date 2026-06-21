@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -137,6 +137,8 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
   const navigate = useNavigate();
   const [expertiseIndex, setExpertiseIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
+  const [exitingIndex, setExitingIndex] = useState(null);
+  const imageRef = useRef(0);
 
   const expertiseList = [
     "Transforming Data into Business Decisions",
@@ -158,8 +160,13 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
       setExpertiseIndex(prev => (prev + 1) % expertiseList.length);
     }, 4200);
     const imgTimer = setInterval(() => {
-      setImageIndex(prev => (prev + 1) % heroImages.length);
-    }, 4000);
+      const current = imageRef.current;
+      const next = (current + 1) % heroImages.length;
+      setExitingIndex(current);
+      setImageIndex(next);
+      imageRef.current = next;
+      setTimeout(() => setExitingIndex(null), 1000);
+    }, 4500);
     return () => { clearInterval(expTimer); clearInterval(imgTimer); };
   }, []);
 
@@ -182,25 +189,34 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
         className="relative min-h-[100vw] sm:min-h-screen flex flex-col overflow-hidden mt-16 sm:mt-20"
         style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(6,50,49,0.55) 0%, #031414 70%)' }}
       >
-        <div key={imageIndex} className="hero-image-slot absolute inset-0 z-0">
+        <div className="hero-image-slot absolute inset-0 z-0">
           <img
             src={heroImages[imageIndex]}
             alt=""
             className="w-full h-full object-cover object-top"
-            style={{ transform: 'scale(1.06) translateY(-3%)' }}
           />
         </div>
+        {exitingIndex !== null && (
+          <div className="hero-image-exit absolute inset-0 z-0">
+            <img
+              src={heroImages[exitingIndex]}
+              alt=""
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+        )}
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(3,20,20,0.55) 0%, rgba(3,20,20,0.93) 75%)' }}
         ></div>
 
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center pt-8 sm:pt-24 pb-4 px-6">
-          <ExpertiseCarousel items={expertiseList} activeIndex={expertiseIndex} />
-        </div>
-
-        <div className="relative z-10 w-full pb-8 hidden sm:block">
-          <HeroRibbon />
+        <div className="relative z-10 flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col items-center justify-center pt-8 sm:pt-16 lg:pt-24 pb-4 sm:pb-6 px-6">
+            <ExpertiseCarousel items={expertiseList} activeIndex={expertiseIndex} />
+          </div>
+          <div className="w-full pb-4 sm:pb-6 hidden sm:block">
+            <HeroRibbon />
+          </div>
         </div>
       </section>
 
