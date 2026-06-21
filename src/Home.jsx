@@ -11,37 +11,48 @@ import {
   CheckCircle
 } from 'lucide-react';
 
-const ACTIVE_H = 6;
-const SMALL_H = 3.2;
 const TRANSITION = 'top 1.8s cubic-bezier(0.65,0,0.35,1), opacity 1.8s ease, font-size 1.8s cubic-bezier(0.65,0,0.35,1), color 1.8s ease';
 
-function getSlotStyle(slot, total) {
+function getSlotStyle(slot, total, isMobile) {
+  const activeH = isMobile ? 3 : 6;
+  const smallH = isMobile ? 2 : 3.2;
   if (slot === 0) {
-    return { top: '0rem', fontSize: 'clamp(1.25rem, 3.5vw, 2.5rem)', opacity: 1, weight: 700 };
+    return { top: '0rem', fontSize: isMobile ? 'clamp(0.85rem, 4vw, 1.1rem)' : 'clamp(1.25rem, 3.5vw, 2.5rem)', opacity: 1, weight: 700 };
   }
-  const top = ACTIVE_H + (slot - 1) * SMALL_H;
+  const top = activeH + (slot - 1) * smallH;
   const opacity = Math.max(0.15, 0.75 - (slot - 1) * (0.55 / Math.max(total - 1, 1)));
-  return { top: `${top}rem`, fontSize: 'clamp(0.75rem, 1.6vw, 1rem)', opacity, weight: 500 };
+  return { top: `${top}rem`, fontSize: isMobile ? 'clamp(0.6rem, 2vw, 0.75rem)' : 'clamp(0.75rem, 1.6vw, 1rem)', opacity, weight: 500 };
 }
 
 function ExpertiseCarousel({ items, activeIndex }) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 639px)');
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
   const total = items.length;
-  const containerHeightRem = ACTIVE_H + (total - 1) * SMALL_H + 1.6;
+  const activeH = isMobile ? 3 : 6;
+  const smallH = isMobile ? 2 : 3.2;
+  const containerHeightRem = activeH + (total - 1) * smallH + 1.6;
 
   return (
     <div
-      className="relative w-full overflow-hidden flex justify-center mt-20 sm:mt-32 px-4"
+      className="relative w-full overflow-hidden flex justify-center mt-8 sm:mt-32 px-4"
       style={{ height: `${containerHeightRem}rem` }}
     >
       {items.map((label, i) => {
         const slot = (i - activeIndex + total) % total;
-        const style = getSlotStyle(slot, total);
+        const style = getSlotStyle(slot, total, isMobile);
         const isActive = slot === 0;
 
         return (
           <div
             key={label}
-            className="absolute left-0 right-0 font-heading tracking-tight text-center px-2 sm:px-4 sm:whitespace-nowrap"
+            className={`absolute left-0 right-0 font-heading tracking-tight text-center px-2 sm:px-4 sm:whitespace-nowrap ${isActive ? 'expertise-active' : 'expertise-inactive'}`}
             style={{
               top: style.top,
               fontSize: style.fontSize,
@@ -168,7 +179,7 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
 
       <section
         id="home"
-        className="relative min-h-screen flex flex-col overflow-hidden"
+        className="relative min-h-[100vw] sm:min-h-screen flex flex-col overflow-hidden mt-16 sm:mt-20"
         style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(6,50,49,0.55) 0%, #031414 70%)' }}
       >
         <div key={imageIndex} className="hero-image-slot absolute inset-0 z-0">
@@ -184,25 +195,27 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
           style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(3,20,20,0.55) 0%, rgba(3,20,20,0.93) 75%)' }}
         ></div>
 
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center pt-24 pb-4 px-6">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center pt-8 sm:pt-24 pb-4 px-6">
           <ExpertiseCarousel items={expertiseList} activeIndex={expertiseIndex} />
         </div>
 
-        <div className="relative z-10 w-full pb-8">
+        <div className="relative z-10 w-full pb-8 hidden sm:block">
           <HeroRibbon />
         </div>
       </section>
 
       <section id="about" className="py-16 sm:py-24 bg-brand-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <Reveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center mb-16 sm:mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center mb-16 sm:mb-20">
+            <Reveal direction="left">
               <div
                 className="rounded-3xl overflow-hidden border border-brand-accent/10 aspect-[4/5] md:aspect-auto md:h-[500px] lg:h-[580px]"
                 style={{ background: 'radial-gradient(circle at 50% 32%, rgba(203,255,84,0.15) 0%, rgba(203,255,84,0.05) 70%)' }}
               >
-                <img src="/images/profile-image.png" alt="Wajahat" className="w-full h-full object-contain p-6 sm:p-8" />
+                <img src="/images/profile-image.png" alt="Wajahat" className="w-full h-full object-cover p-2 sm:p-8" />
               </div>
+            </Reveal>
+            <Reveal direction="right">
               <div>
                 <div className="flex items-center gap-2 mb-5">
                   <span className="relative flex items-center justify-center w-4 h-4">
@@ -230,8 +243,8 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
                   By combining business understanding with deep expertise across the SAP Data & Analytics ecosystem, I help organizations move beyond reporting and toward intelligent, insight-driven decision-making.
                 </p>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
           <Reveal delay={150}>
             <h3 className="font-heading font-bold text-xl sm:text-2xl mb-6">Featured Certifications</h3>
@@ -250,7 +263,7 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
 
       <section id="services" className="py-16 sm:py-24 bg-brand-surface/25 border-y border-brand-accent/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <Reveal>
+          <Reveal direction="left">
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight mb-10 sm:mb-12">
               Case Studies and <span className="text-brand-accent">Experience</span>
             </h2>
@@ -277,8 +290,13 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
         </div>
       </section>
 
-      <section id="booking" className="py-16 sm:py-24 bg-brand-surface/25 border-t border-brand-accent/10">
-        <Reveal>
+      <section id="booking" className="relative py-8 sm:py-12 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src="/images/contact-image.png" alt="" className="w-full h-full object-cover object-[center_70%]" />
+        </div>
+        <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(3,20,20,0.4) 0%, rgba(3,20,20,0.9) 75%)' }}></div>
+        <div className="relative z-10">
+        <Reveal direction="right">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-10 sm:gap-16 items-center">
             <div>
               <h2 className="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight mb-6">
@@ -352,6 +370,7 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
             </div>
           </div>
         </Reveal>
+        </div>
       </section>
 
       <Footer />

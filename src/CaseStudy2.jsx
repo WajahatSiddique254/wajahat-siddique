@@ -80,16 +80,16 @@ export default function CaseStudy2() {
     <div className="min-h-screen bg-brand-dark text-white font-body overflow-x-hidden">
       <Header caseStudies={headerCaseStudies} trainings={headerTrainings} />
 
-      <section className="pt-32 pb-16 sm:pb-20 px-4 sm:px-6 relative overflow-hidden min-h-[50vh] sm:min-h-[60vh] flex items-center">
+      <section className="mt-16 sm:mt-20 pt-32 pb-16 sm:pb-20 px-4 sm:px-6 relative overflow-hidden min-h-[50vh] sm:min-h-[60vh] flex items-center">
         <div className="absolute inset-0 z-0">
-          <img src="/images/hero-image-2.png" alt="" className="w-full h-full object-cover object-top" style={{ transform: 'scale(1.06) translateY(-3%)' }} />
+          <img src="/images/casestudy-cover-2.png" alt="" className="w-full h-full object-cover object-center" />
         </div>
         <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(3,20,20,0.45) 0%, rgba(3,20,20,0.92) 75%)' }}></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-4 sm:mb-6 max-w-3xl">
+        <div className="max-w-7xl mx-auto relative z-10 text-center">
+          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-4 sm:mb-6 max-w-5xl mx-auto">
             Executive Analytics &amp; <span className="text-brand-accent">Decision Intelligence</span>
           </h1>
-          <p className="text-slate-300 text-sm sm:text-lg leading-relaxed max-w-2xl">
+          <p className="text-slate-300 text-sm sm:text-lg leading-relaxed max-w-3xl mx-auto">
             Executive teams require timely, accurate, and actionable insights to effectively manage organizational
             performance. I design and deliver enterprise analytics solutions that transform operational and
             transactional data into meaningful information for business leaders.
@@ -99,7 +99,7 @@ export default function CaseStudy2() {
 
 
 
-      <Reveal delay={100}>
+      <Reveal delay={100} direction="left">
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-brand-surface/10 border-y border-brand-accent/10">
           <div className="max-w-7xl mx-auto">
             <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">Business <span className="text-brand-accent">Challenges Addressed</span></h2>
@@ -116,7 +116,7 @@ export default function CaseStudy2() {
         </section>
       </Reveal>
 
-      <Reveal delay={100}>
+      <Reveal delay={100} direction="right">
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-brand-dark">
           <div className="max-w-7xl mx-auto">
             <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">Solutions <span className="text-brand-accent">Delivered</span></h2>
@@ -138,7 +138,7 @@ export default function CaseStudy2() {
 
 
 
-      <Reveal delay={100}>
+      <Reveal delay={100} direction="left">
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-brand-dark">
           <div className="max-w-7xl mx-auto">
             <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">Representative <span className="text-brand-accent">Engagements</span></h2>
@@ -159,7 +159,7 @@ export default function CaseStudy2() {
         </section>
       </Reveal>
 
-      <Reveal>
+      <Reveal direction="right">
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-brand-surface/10 border-t border-brand-accent/10">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             <div>

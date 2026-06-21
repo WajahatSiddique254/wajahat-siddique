@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function Reveal({ children, className = '', delay = 0 }) {
+export default function Reveal({ children, className = '', delay = 0, direction = 'up' }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -19,8 +19,10 @@ export default function Reveal({ children, className = '', delay = 0 }) {
     return () => observer.disconnect();
   }, [delay]);
 
+  const dirClass = direction === 'left' ? 'reveal-left' : direction === 'right' ? 'reveal-right' : 'reveal';
+
   return (
-    <div ref={ref} className={`reveal ${className}`}>
+    <div ref={ref} className={`${dirClass} ${className}`}>
       {children}
     </div>
   );

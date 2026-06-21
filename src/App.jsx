@@ -7,6 +7,7 @@ import Home from './Home.jsx';
 import CaseStudy1 from './CaseStudy1';
 import CaseStudy2 from './CaseStudy2';
 import CaseStudy3 from './CaseStudy3';
+import Certifications from './Certifications';
 
 function PlaceholderPage({ title, subtitle }) {
   return (
@@ -149,7 +150,7 @@ export default function App() {
         <Route path="/case-study/executive-analytics" element={<CaseStudy2 />} />
         <Route path="/case-study/data-modernization" element={<CaseStudy3 />} />
         <Route path="/blogs" element={<PlaceholderPage title="Blogs" subtitle="Coming soon — insights on data, analytics & AI." />} />
-        <Route path="/certifications" element={<PlaceholderPage title="Certifications" subtitle="Full certification catalog coming soon." />} />
+        <Route path="/certifications" element={<Certifications />} />
       </Routes>
       <ScrollToTop />
       <CustomCursor />

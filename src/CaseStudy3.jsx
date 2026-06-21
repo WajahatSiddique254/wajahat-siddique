@@ -79,16 +79,16 @@ export default function CaseStudy3() {
     <div className="min-h-screen bg-brand-dark text-white font-body overflow-x-hidden">
       <Header caseStudies={headerCaseStudies} trainings={headerTrainings} />
 
-      <section className="pt-32 pb-16 sm:pb-20 px-4 sm:px-6 relative overflow-hidden min-h-[50vh] sm:min-h-[60vh] flex items-center">
+      <section className="mt-16 sm:mt-20 pt-32 pb-16 sm:pb-20 px-4 sm:px-6 relative overflow-hidden min-h-[50vh] sm:min-h-[60vh] flex items-center">
         <div className="absolute inset-0 z-0">
-          <img src="/images/hero-image-3.png" alt="" className="w-full h-full object-cover object-top" style={{ transform: 'scale(1.06) translateY(-3%)' }} />
+          <img src="/images/casestudy-cover-3.png" alt="" className="w-full h-full object-cover object-center" />
         </div>
         <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(3,20,20,0.45) 0%, rgba(3,20,20,0.92) 75%)' }}></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-4 sm:mb-6 max-w-3xl">
+        <div className="max-w-7xl mx-auto relative z-10 text-center">
+          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-4 sm:mb-6 max-w-5xl mx-auto">
             Data Modernization &amp; <span className="text-brand-accent">Cloud Analytics</span>
           </h1>
-          <p className="text-slate-300 text-sm sm:text-lg leading-relaxed max-w-2xl">
+          <p className="text-slate-300 text-sm sm:text-lg leading-relaxed max-w-3xl mx-auto">
             Modern organizations require scalable, cloud-based data platforms that can support analytics, planning,
             AI, and future digital transformation initiatives. I help organizations modernize their data landscape
             by implementing cloud-native SAP data and analytics solutions.
@@ -96,28 +96,24 @@ export default function CaseStudy3() {
         </div>
       </section>
 
-      <Reveal>
+      <Reveal direction="left">
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-brand-surface/10 border-y border-brand-accent/10">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
-              <div className="lg:col-span-2">
-                <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">Business <span className="text-brand-accent">Challenges Addressed</span></h2>
-                <div className="w-16 h-1 bg-brand-accent rounded mb-6"></div>
-                <div className="flex flex-col gap-3">
-                  {challenges.map((c, i) => (
-                    <div key={i} className="flex items-start gap-3 bg-brand-surface/50 border border-brand-accent/10 rounded-2xl p-4 sm:p-5 hover:border-brand-accent/25 transition-colors">
-                      <CheckCircle className="text-brand-accent w-5 h-5 mt-0.5 flex-shrink-0" />
-                      <span className="text-slate-300 text-sm leading-relaxed">{c}</span>
-                    </div>
-                  ))}
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">Business <span className="text-brand-accent">Challenges Addressed</span></h2>
+            <div className="w-16 h-1 bg-brand-accent rounded mb-8 sm:mb-10"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              {challenges.map((c, i) => (
+                <div key={i} className="flex items-start gap-3 bg-brand-surface/50 border border-brand-accent/10 rounded-2xl p-4 sm:p-5 hover:border-brand-accent/25 transition-colors">
+                  <CheckCircle className="text-brand-accent w-5 h-5 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300 text-sm leading-relaxed">{c}</span>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
       </Reveal>
 
-      <Reveal delay={100}>
+      <Reveal delay={100} direction="right">
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-brand-dark">
           <div className="max-w-7xl mx-auto">
             <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">Solutions <span className="text-brand-accent">Delivered</span></h2>
@@ -139,7 +135,7 @@ export default function CaseStudy3() {
 
 
 
-      <Reveal delay={100}>
+      <Reveal delay={100} direction="left">
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-brand-dark">
           <div className="max-w-7xl mx-auto">
             <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">Representative <span className="text-brand-accent">Engagements</span></h2>
@@ -160,7 +156,7 @@ export default function CaseStudy3() {
         </section>
       </Reveal>
 
-      <Reveal>
+      <Reveal direction="right">
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-brand-surface/10 border-t border-brand-accent/10">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             <div>
