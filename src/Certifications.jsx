@@ -17,9 +17,9 @@ const sapCerts = [
 ];
 
 const nlpHeroImages = [
-  { title: 'NLP Foundations & Applications', issuer: 'DeepLearning.AI', img: '/images/NLP-Certificate-1.png' },
-  { title: 'Advanced NLP with Transformers', issuer: 'Hugging Face', img: '/images/NLP-Certificate-2.png' },
-  { title: 'Natural Language Processing Specialization', issuer: 'Coursera', img: '/images/NLP-Certificate-3.png' },
+  { title: 'Certified Practitioner of Neuro Linguistic Programming', issuer: 'The American Board of NLP (ABNLP), in partnership with AL&CO (Arslan Larik & Company)', img: '/images/NLP-Certificate-1.png' },
+  { title: 'Certified NLP Coach', issuer: 'The American Board of NLP (ABNLP), Coaching Division, in partnership with AL&CO (Arslan Larik & Company)', img: '/images/NLP-Certificate-2.png' },
+  { title: 'Certified Practitioner of Time Line Therapy', issuer: 'issued by Time Line Therapy Association (TLTA), in partnership with AL&CO (Arslan Larik & Company)', img: '/images/NLP-Certificate-3.png' },
 ];
 
 export default function Certifications() {
@@ -30,7 +30,7 @@ export default function Certifications() {
     onClick: () => navigate(cs.path)
   }));
 
-  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => {} }));
+  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => { } }));
 
   return (
     <div className="min-h-screen bg-brand-dark text-white font-body overflow-x-hidden">
