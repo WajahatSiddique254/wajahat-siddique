@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Clock } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import './App.css';
 import Home from './Home.jsx';
@@ -8,11 +8,15 @@ import CaseStudy1 from './CaseStudy1';
 import CaseStudy2 from './CaseStudy2';
 import CaseStudy3 from './CaseStudy3';
 import Certifications from './Certifications';
+import TrainingSAC from './TrainingSAC';
 
 function PlaceholderPage({ title, subtitle }) {
   return (
     <div className="min-h-screen bg-brand-dark text-white font-body flex flex-col items-center justify-center px-6 text-center">
       <div className="max-w-lg">
+        <div className="w-20 h-20 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center mx-auto mb-6">
+          <Clock className="text-brand-accent w-10 h-10" />
+        </div>
         <h1 className="font-heading font-extrabold text-4xl sm:text-5xl tracking-tight mb-4">
           <span className="text-brand-accent">{title}</span>
         </h1>
@@ -151,6 +155,9 @@ export default function App() {
         <Route path="/case-study/data-modernization" element={<CaseStudy3 />} />
         <Route path="/blogs" element={<PlaceholderPage title="Blogs" subtitle="Coming soon — insights on data, analytics & AI." />} />
         <Route path="/certifications" element={<Certifications />} />
+        <Route path="/trainings/sac-bi-consultant" element={<TrainingSAC />} />
+        <Route path="/trainings/sac-planning-bootcamp" element={<PlaceholderPage title="Coming Soon" subtitle="SAP Analytics Cloud (SAC) Planning Bootcamp — Details are on the way." />} />
+        <Route path="/trainings/datasphere-bootcamp" element={<PlaceholderPage title="Coming Soon" subtitle="SAP DataSphere Bootcamp — Details are on the way." />} />
       </Routes>
       <ScrollToTop />
       <CustomCursor />

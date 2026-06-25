@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle, BarChart3, PieChart, Activity, LineChart, Building2, Lightbulb, Cpu, ArrowRight } from 'lucide-react';
+import { CheckCircle, BarChart3, PieChart, Activity, LineChart, Building2, Lightbulb, Cpu } from 'lucide-react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Reveal from './components/Reveal';
@@ -74,7 +74,7 @@ export default function CaseStudy2() {
     onClick: () => navigate(cs.path)
   }));
 
-  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => {} }));
+  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => navigate(tr.path) }));
 
   return (
     <div className="min-h-screen bg-brand-dark text-white font-body overflow-x-hidden">
@@ -200,7 +200,7 @@ export default function CaseStudy2() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <button onClick={() => navigate('/#booking')} className="px-6 py-3 bg-brand-accent text-brand-dark font-heading font-bold text-sm rounded-full hover:bg-brand-accent-hover transition-all duration-300 flex items-center gap-2">
-              Book an E-Meeting <ArrowRight size={14} />
+              Book an Appointment
             </button>
           </div>
         </section>

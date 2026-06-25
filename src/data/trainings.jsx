@@ -1,23 +1,26 @@
 import React from 'react';
-import { GraduationCap, BookOpen, Award } from 'lucide-react';
+import { BarChart3, Clock, Database } from 'lucide-react';
 
 export const trainingMeta = [
   {
     id: 'tr1',
-    icon: <GraduationCap className="text-brand-accent w-7 h-7" />,
-    title: 'SAP Analytics Cloud – Planning & Reporting',
-    desc: 'Master enterprise planning, budgeting, and reporting with hands-on SAC workshops tailored for finance professionals.',
+    icon: <BarChart3 className="text-brand-accent w-7 h-7" />,
+    title: 'SAP Analytics Cloud (SAC) BI Bootcamp',
+    desc: 'A hands-on bootcamp designed to turn beginners into industry-ready SAC BI professionals with real-world implementation skills.',
+    path: '/trainings/sac-bi-consultant',
   },
   {
     id: 'tr2',
-    icon: <BookOpen className="text-brand-accent w-7 h-7" />,
-    title: 'Data Architecture on SAP BDC & Datasphere',
-    desc: 'Learn to design modern data models, integrate sources, and build scalable analytics foundations using SAP BDC.',
+    icon: <Clock className="text-brand-accent w-7 h-7" />,
+    title: 'SAP Analytics Cloud (SAC) Planning Bootcamp',
+    desc: 'Coming soon',
+    path: '/trainings/sac-planning-bootcamp',
   },
   {
     id: 'tr3',
-    icon: <Award className="text-brand-accent w-7 h-7" />,
-    title: 'AI-Ready Enterprise – Strategy & Execution',
-    desc: 'A practical program on preparing your organization\'s data, processes, and culture for AI adoption.',
+    icon: <Database className="text-brand-accent w-7 h-7" />,
+    title: 'SAP DataSphere Bootcamp',
+    desc: 'Coming soon',
+    path: '/trainings/datasphere-bootcamp',
   },
 ];

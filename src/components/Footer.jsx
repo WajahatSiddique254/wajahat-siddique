@@ -15,7 +15,7 @@ export default function Footer() {
               Specialized consultation and enterprise strategy for data & analytics transformation using SAP technologies.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-10 h-10 rounded-full bg-brand-surface border border-brand-accent/10 flex items-center justify-center hover:border-brand-accent transition-all">
+              <a href="https://www.linkedin.com/in/wajahatsiddique" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-brand-surface border border-brand-accent/10 flex items-center justify-center hover:border-brand-accent transition-all">
                 <i className="fa-brands fa-linkedin-in text-slate-400"></i>
               </a>
             </div>
@@ -26,7 +26,7 @@ export default function Footer() {
               <Link to="/" className="hover:text-brand-accent transition-colors">Home</Link>
               <a href="/#about" className="hover:text-brand-accent transition-colors">About</a>
               <a href="/#services" className="hover:text-brand-accent transition-colors">Case Studies</a>
-              <a href="/#booking" className="hover:text-brand-accent transition-colors">Book E-Meeting</a>
+              <a href="/#booking" className="hover:text-brand-accent transition-colors">Book Appointment</a>
             </div>
           </div>
           <div>

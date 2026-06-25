@@ -125,7 +125,7 @@ export default function Header({ caseStudies, trainings }) {
               onClick={(e) => { e.preventDefault(); closeAll(); handleNav('booking'); }}
               className="px-4 lg:px-5 py-2.5 bg-brand-accent text-brand-dark font-heading font-semibold text-sm rounded-full hover:bg-brand-accent-hover transition-all duration-300 hover:shadow-[0_0_20px_rgba(203,255,84,0.3)] hover:-translate-y-0.5 whitespace-nowrap"
             >
-              Book E-Meeting
+              Book Appointment
             </button>
           </nav>
 
@@ -187,7 +187,7 @@ export default function Header({ caseStudies, trainings }) {
                   {trainings.map((tr, i) => (
                     <button
                       key={i}
-                      onClick={() => { closeAll(); }}
+                      onClick={() => { closeAll(); tr.onClick && tr.onClick(); }}
                       className="flex-1 min-w-0 flex flex-row sm:flex-col items-center sm:items-start gap-3 p-4 sm:p-5 rounded-xl bg-brand-dark/60 border border-brand-accent/10 hover:border-brand-accent/30 hover:bg-brand-accent/5 transition-all duration-300 text-left"
                     >
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center flex-shrink-0">
@@ -246,7 +246,7 @@ export default function Header({ caseStudies, trainings }) {
           {sharedTr && mobileTrOpen && (
             <div className="mt-2 flex flex-col gap-1 pl-3 border-l border-brand-accent/20">
               {trainings.map((tr, i) => (
-                <button key={i} onClick={closeAll} className="block w-full text-left text-sm text-slate-400 hover:text-brand-accent py-1.5 transition-colors">
+                <button key={i} onClick={() => { closeAll(); tr.onClick && tr.onClick(); }} className="block w-full text-left text-sm text-slate-400 hover:text-brand-accent py-1.5 transition-colors">
                   {tr.title}
                 </button>
               ))}
@@ -256,7 +256,7 @@ export default function Header({ caseStudies, trainings }) {
 
         <Link to="/blogs" onClick={closeAll} className="font-heading text-base text-left text-slate-300 hover:text-brand-accent">Blogs</Link>
         <Link to="/certifications" onClick={closeAll} className="font-heading text-base text-left text-slate-300 hover:text-brand-accent">Certifications</Link>
-        <button onClick={(e) => { handleNav('booking'); }} className="w-full text-center py-3 bg-brand-accent text-brand-dark font-heading font-semibold rounded-full text-sm">Book E-Meeting</button>
+        <button onClick={(e) => { handleNav('booking'); }} className="w-full text-center py-3 bg-brand-accent text-brand-dark font-heading font-semibold rounded-full text-sm">Book Appointment</button>
       </div>
     </header>
   );

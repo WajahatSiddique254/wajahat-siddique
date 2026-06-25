@@ -30,7 +30,7 @@ export default function Certifications() {
     onClick: () => navigate(cs.path)
   }));
 
-  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => { } }));
+  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => navigate(tr.path) }));
 
   return (
     <div className="min-h-screen bg-brand-dark text-white font-body overflow-x-hidden">
@@ -96,6 +96,59 @@ export default function Certifications() {
                   </div>
                 </Reveal>
               ))}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal direction="left">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-brand-dark">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">
+              Data Analyst <span className="text-brand-accent">Certifications</span>
+            </h2>
+            <div className="w-16 h-1 bg-brand-accent rounded mb-8 sm:mb-10"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-2xl mx-auto">
+              {[
+                { title: 'Data Analyst in Databricks', issuer: 'DataCamp', img: '/images/Data-Analyst.png' },
+                { title: 'Data Analyst in Power BI', issuer: 'DataCamp', img: '/images/Power-BI.png' },
+              ].map((cert, i) => (
+                <Reveal key={i} delay={i * 50}>
+                  <div>
+                    <div className="aspect-[4/3]">
+                      <img src={cert.img} alt={cert.title} className="w-full h-full object-contain" />
+                    </div>
+                    <div className="mt-3 sm:mt-4">
+                      <h3 className="font-heading font-bold text-sm sm:text-base text-white leading-snug">{cert.title}</h3>
+                      <p className="text-xs text-slate-400 mt-0.5">{cert.issuer}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal direction="left">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-brand-surface/10 border-y border-brand-accent/10">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight mb-2">
+              Digital Transformation <span className="text-brand-accent">Certifications</span>
+            </h2>
+            <div className="w-16 h-1 bg-brand-accent rounded mb-8 sm:mb-10"></div>
+            <div className="max-w-sm mx-auto">
+              <Reveal>
+                <div>
+                  <div className="aspect-[4/3]">
+                    <img src="/images/Digital-Transformation-Practitioner.jpg" alt="Digital Transformation – Practitioner" className="w-full h-full object-contain" />
+                  </div>
+                  <div className="mt-3 sm:mt-4">
+                    <h3 className="font-heading font-bold text-sm sm:text-base text-white leading-snug">Digital Transformation – Practitioner</h3>
+                    <p className="text-xs text-slate-400 mt-0.5">Udemy</p>
+                  </div>
+                </div>
+              </Reveal>
             </div>
           </div>
         </section>

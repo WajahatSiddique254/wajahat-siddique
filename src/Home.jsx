@@ -6,7 +6,6 @@ import Reveal from './components/Reveal';
 import { caseStudyMeta } from './data/caseStudies.jsx';
 import { trainingMeta } from './data/trainings.jsx';
 import {
-  ArrowRight,
   Send,
   CheckCircle
 } from 'lucide-react';
@@ -175,7 +174,7 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
     onClick: () => navigate(cs.path)
   }));
 
-  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => { } }));
+  const headerTrainings = trainingMeta.map(tr => ({ ...tr, onClick: () => navigate(tr.path) }));
 
   return (
     <>
@@ -270,7 +269,7 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
                 onClick={() => navigate('/certifications')}
                 className="px-5 sm:px-6 py-3 border border-brand-accent/30 text-brand-accent font-heading font-semibold text-sm rounded-full hover:bg-brand-accent/10 transition-all duration-300 flex items-center gap-2"
               >
-                See All Certifications <ArrowRight size={14} />
+                See All Certifications
               </button>
             </div>
           </Reveal>
@@ -297,7 +296,7 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
                     onClick={() => navigate(cs.path)}
                     className="inline-flex items-center gap-2 text-brand-accent font-heading font-semibold text-sm hover:underline"
                   >
-                    View Case Study <ArrowRight size={14} />
+                    View Case Study
                   </button>
                 </div>
               ))}
@@ -316,7 +315,7 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
           <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-10 sm:gap-16 items-center">
             <div>
               <h2 className="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight mb-6">
-                Book an <span className="text-brand-accent">E-Meeting</span>
+                Book an <span className="text-brand-accent">Appointment</span>
               </h2>
               <p className="text-slate-300 leading-relaxed mb-8 text-sm sm:text-base">
                 Discuss enterprise integration, request speaking engagements, or setup a one-on-one consulting audit for your technology pipeline.
@@ -334,7 +333,7 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
               {bookingStatus === 'success' ? (
                 <div className="text-center py-8">
                   <CheckCircle className="text-brand-accent w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 stroke-[1.5]" />
-                  <h3 className="font-heading font-bold text-xl sm:text-2xl text-brand-accent mb-2">E-Meeting Scheduled</h3>
+                  <h3 className="font-heading font-bold text-xl sm:text-2xl text-brand-accent mb-2">Appointment Scheduled</h3>
                   <p className="text-slate-300 text-sm max-w-xs mx-auto">
                     Thank you, {formData.name}. Wajahat's team will reach out at {formData.email} to confirm your slot.
                   </p>
@@ -346,8 +345,8 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
               ) : (
                 <form onSubmit={handleBookingSubmit} className="flex flex-col gap-4 sm:gap-5">
                   {[
-                    { id: 'name', label: 'Your Name', type: 'text', placeholder: 'Wajahat Ali' },
-                    { id: 'email', label: 'Email Address', type: 'email', placeholder: 'wajahat@domain.com' },
+                    { id: 'name', label: 'Your Name', type: 'text', placeholder: 'Enter your name' },
+                    { id: 'email', label: 'Email Address', type: 'email', placeholder: 'Enter your email' },
                   ].map(f => (
                     <div key={f.id} className="flex flex-col gap-1.5">
                       <label htmlFor={f.id} className="font-heading font-semibold text-sm text-slate-300">{f.label}</label>
