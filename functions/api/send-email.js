@@ -1,5 +1,3 @@
-import { Resend } from 'resend';
-
 export async function onRequest(context) {
   const { request, env } = context;
 
@@ -40,24 +38,32 @@ export async function onRequest(context) {
       });
     }
 
-    const resend = new Resend(env.RESEND_API_KEY);
-
-    const { data, error } = await resend.emails.send({
-      from: 'Contact Form <website@wajahatsiddique.com>',
-      to: ['contact@wajahatsiddique.com'],
-      subject: subject || 'New Contact Form Submission',
-      replyTo: email,
-      html: `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
+    // Call Resend API using native fetch (zero external dependencies, runs natively on Cloudflare)
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Contact Form <website@wajahatsiddique.com>',
+        to: ['contact@wajahatsiddique.com'],
+        subject: subject || 'New Contact Form Submission',
+        reply_to: email,
+        html: `
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong></p>
+          <p>${message}</p>
+        `,
+      }),
     });
 
-    if (error) {
-      return new Response(JSON.stringify({ error }), {
-        status: 500,
+    const data = await res.json();
+
+    if (!res.ok) {
+      return new Response(JSON.stringify({ error: data }), {
+        status: res.status,
         headers: {
           ...corsHeaders,
           'Content-Type': 'application/json',
@@ -82,4 +88,5 @@ export async function onRequest(context) {
     });
   }
 }
+
 
