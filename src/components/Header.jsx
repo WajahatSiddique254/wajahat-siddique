@@ -120,6 +120,7 @@ export default function Header({ caseStudies, trainings }) {
 
             <Link to="/blogs" onClick={closeAll} className="font-heading font-medium text-sm text-slate-300 hover:text-brand-accent transition-colors">Blogs</Link>
             <Link to="/certifications" onClick={closeAll} className="font-heading font-medium text-sm text-slate-300 hover:text-brand-accent transition-colors">Certifications</Link>
+            <Link to="/gallery" onClick={closeAll} className="font-heading font-medium text-sm text-slate-300 hover:text-brand-accent transition-colors">Gallery</Link>
 
             <button
               onClick={(e) => { e.preventDefault(); closeAll(); handleNav('booking'); }}
@@ -256,6 +257,7 @@ export default function Header({ caseStudies, trainings }) {
 
         <Link to="/blogs" onClick={closeAll} className="font-heading text-base text-left text-slate-300 hover:text-brand-accent">Blogs</Link>
         <Link to="/certifications" onClick={closeAll} className="font-heading text-base text-left text-slate-300 hover:text-brand-accent">Certifications</Link>
+        <Link to="/gallery" onClick={closeAll} className="font-heading text-base text-left text-slate-300 hover:text-brand-accent">Gallery</Link>
         <button onClick={(e) => { handleNav('booking'); }} className="w-full text-center py-3 bg-brand-accent text-brand-dark font-heading font-semibold rounded-full text-sm">Book Appointment</button>
       </div>
     </header>

@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Reveal from './components/Reveal';
 import { caseStudyMeta } from './data/caseStudies.jsx';
 import { trainingMeta } from './data/trainings.jsx';
+import { galleryImages } from './data/gallery.jsx';
 import {
   Send,
-  CheckCircle
+  CheckCircle,
+  X
 } from 'lucide-react';
 
 const TRANSITION = 'top 1.8s cubic-bezier(0.65,0,0.35,1), opacity 1.8s ease, font-size 1.8s cubic-bezier(0.65,0,0.35,1), color 1.8s ease';
@@ -138,6 +140,33 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
   const [imageIndex, setImageIndex] = useState(0);
   const [exitingIndex, setExitingIndex] = useState(null);
   const imageRef = useRef(0);
+  const [modalImg, setModalImg] = useState(null);
+  const [modalAnim, setModalAnim] = useState('');
+
+  const openModal = useCallback((src) => {
+    setModalImg(src);
+  }, []);
+
+  useEffect(() => {
+    if (!modalImg) return;
+    const frame = requestAnimationFrame(() => {
+      setModalAnim('open');
+    });
+    const onKey = (e) => { if (e.key === 'Escape') closeModal(); };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [modalImg]);
+
+  const closeModal = useCallback(() => {
+    setModalAnim('closing');
+    setTimeout(() => {
+      setModalImg(null);
+      setModalAnim('');
+    }, 400);
+  }, []);
 
   const expertiseList = [
     "Transforming Data into Business Decisions",
@@ -150,8 +179,6 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
   const heroImages = [
     '/images/hero-image-1.png',
     '/images/hero-image-2.png',
-    '/images/hero-image-3.png',
-    '/images/hero-image-4.png',
   ];
 
   useEffect(() => {
@@ -227,7 +254,7 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
                 className="rounded-3xl overflow-hidden border border-brand-accent/10 aspect-[4/5] md:aspect-auto md:h-[500px] lg:h-[580px]"
                 style={{ background: 'radial-gradient(circle at 50% 32%, rgba(203,255,84,0.15) 0%, rgba(203,255,84,0.05) 70%)' }}
               >
-                <img src="/images/profile-image.png" alt="Wajahat" className="w-full h-full object-cover p-2 sm:p-8" />
+                <img src="/images/profile-image.png" alt="Wajahat" className="w-full h-full object-cover" />
               </div>
             </Reveal>
             <Reveal direction="right">
@@ -305,88 +332,138 @@ export default function Home({ bookingStatus, setBookingStatus, formData, setFor
         </div>
       </section>
 
+      <section id="gallery" className="py-16 sm:py-24" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(6,50,49,0.5) 0%, #062423 70%)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <Reveal direction="left">
+            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight mb-10 sm:mb-12">
+              Photo <span className="text-brand-accent">Gallery</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={100}>
+            <div className="gallery-wall">
+              {galleryImages.slice(0, 4).map((src, i) => (
+                <div key={i} className="gallery-item cursor-pointer" onClick={() => openModal(src)}>
+                  <img src={src} alt={`Gallery ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={200}>
+            <div className="flex justify-center mt-10">
+              <button
+                onClick={() => navigate('/gallery')}
+                className="px-6 py-3 border border-brand-accent/30 text-brand-accent font-heading font-semibold text-sm rounded-full hover:bg-brand-accent/10 transition-all duration-300 flex items-center gap-2"
+              >
+                View All Photos
+              </button>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section id="booking" className="relative py-8 sm:py-12 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src="/images/contact-image.png" alt="" className="w-full h-full object-cover object-[center_70%]" />
         </div>
         <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(3,20,20,0.4) 0%, rgba(3,20,20,0.9) 75%)' }}></div>
         <div className="relative z-10">
-        <Reveal direction="right">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-10 sm:gap-16 items-center">
-            <div>
-              <h2 className="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight mb-6">
-                Book an <span className="text-brand-accent">Appointment</span>
-              </h2>
-              <p className="text-slate-300 leading-relaxed mb-8 text-sm sm:text-base">
-                Discuss enterprise integration, request speaking engagements, or setup a one-on-one consulting audit for your technology pipeline.
-              </p>
-              <div className="bg-brand-surface/60 border border-brand-accent/10 rounded-2xl p-5 sm:p-6 flex gap-4 items-center">
-                <CheckCircle className="text-brand-accent w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0" />
-                <div>
-                  <h4 className="font-heading font-bold text-sm sm:text-base">Actionable Consulting</h4>
-                  <p className="text-slate-400 text-xs mt-1">Get strategic planning, system audits, and implementation pathways directly from Wajahat.</p>
+          <Reveal direction="right">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-10 sm:gap-16 items-center">
+              <div>
+                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight mb-6">
+                  Book an <span className="text-brand-accent">Appointment</span>
+                </h2>
+                <p className="text-slate-300 leading-relaxed mb-8 text-sm sm:text-base">
+                  Discuss enterprise integration, request speaking engagements, or setup a one-on-one consulting audit for your technology pipeline.
+                </p>
+                <div className="bg-brand-surface/60 border border-brand-accent/10 rounded-2xl p-5 sm:p-6 flex gap-4 items-center">
+                  <CheckCircle className="text-brand-accent w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-heading font-bold text-sm sm:text-base">Actionable Consulting</h4>
+                    <p className="text-slate-400 text-xs mt-1">Get strategic planning, system audits, and implementation pathways directly from Wajahat.</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="bg-brand-surface/60 border border-brand-accent/10 rounded-3xl p-6 sm:p-8 backdrop-blur-md">
-              {bookingStatus === 'success' ? (
-                <div className="text-center py-8">
-                  <CheckCircle className="text-brand-accent w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 stroke-[1.5]" />
-                  <h3 className="font-heading font-bold text-xl sm:text-2xl text-brand-accent mb-2">Appointment Scheduled</h3>
-                  <p className="text-slate-300 text-sm max-w-xs mx-auto">
-                    Thank you, {formData.name}. Wajahat's team will reach out at {formData.email} to confirm your slot.
-                  </p>
-                  <button onClick={() => { setBookingStatus(null); setFormData({ name: '', email: '', service: 'Agentic AI Consulting', message: '' }); }}
-                    className="mt-6 px-6 py-2 bg-brand-accent text-brand-dark rounded-full font-heading font-bold text-sm">
-                    Book Another Meeting
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleBookingSubmit} className="flex flex-col gap-4 sm:gap-5">
-                  {[
-                    { id: 'name', label: 'Your Name', type: 'text', placeholder: 'Enter your name' },
-                    { id: 'email', label: 'Email Address', type: 'email', placeholder: 'Enter your email' },
-                  ].map(f => (
-                    <div key={f.id} className="flex flex-col gap-1.5">
-                      <label htmlFor={f.id} className="font-heading font-semibold text-sm text-slate-300">{f.label}</label>
-                      <input type={f.type} id={f.id} required value={formData[f.id]}
-                        onChange={e => setFormData({ ...formData, [f.id]: e.target.value })}
-                        placeholder={f.placeholder}
-                        className="bg-brand-dark/50 border border-brand-accent/10 focus:border-brand-accent rounded-xl p-3.5 outline-none text-white text-sm transition-all" />
+              <div className="bg-brand-surface/60 border border-brand-accent/10 rounded-3xl p-6 sm:p-8 backdrop-blur-md">
+                {bookingStatus === 'success' ? (
+                  <div className="text-center py-8">
+                    <CheckCircle className="text-brand-accent w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 stroke-[1.5]" />
+                    <h3 className="font-heading font-bold text-xl sm:text-2xl text-brand-accent mb-2">Appointment Scheduled</h3>
+                    <p className="text-slate-300 text-sm max-w-xs mx-auto">
+                      Thank you, {formData.name}. Wajahat's team will reach out at {formData.email} to confirm your slot.
+                    </p>
+                    <button onClick={() => { setBookingStatus(null); setFormData({ name: '', email: '', service: 'Agentic AI Consulting', message: '' }); }}
+                      className="mt-6 px-6 py-2 bg-brand-accent text-brand-dark rounded-full font-heading font-bold text-sm">
+                      Book Another Meeting
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleBookingSubmit} className="flex flex-col gap-4 sm:gap-5">
+                    {[
+                      { id: 'name', label: 'Your Name', type: 'text', placeholder: 'Enter your name' },
+                      { id: 'email', label: 'Email Address', type: 'email', placeholder: 'Enter your email' },
+                    ].map(f => (
+                      <div key={f.id} className="flex flex-col gap-1.5">
+                        <label htmlFor={f.id} className="font-heading font-semibold text-sm text-slate-300">{f.label}</label>
+                        <input type={f.type} id={f.id} required value={formData[f.id]}
+                          onChange={e => setFormData({ ...formData, [f.id]: e.target.value })}
+                          placeholder={f.placeholder}
+                          className="bg-brand-dark/50 border border-brand-accent/10 focus:border-brand-accent rounded-xl p-3.5 outline-none text-white text-sm transition-all" />
+                      </div>
+                    ))}
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="service" className="font-heading font-semibold text-sm text-slate-300">Service Category</label>
+                      <select id="service" value={formData.service} onChange={e => setFormData({ ...formData, service: e.target.value })}
+                        className="bg-brand-dark/50 border border-brand-accent/10 focus:border-brand-accent rounded-xl p-3.5 outline-none text-white text-sm">
+                        <option>Agentic AI Consulting</option>
+                        <option>Digital Transformation Strategy</option>
+                        <option>Workshop or Seminar Booking</option>
+                      </select>
                     </div>
-                  ))}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="service" className="font-heading font-semibold text-sm text-slate-300">Service Category</label>
-                    <select id="service" value={formData.service} onChange={e => setFormData({ ...formData, service: e.target.value })}
-                      className="bg-brand-dark/50 border border-brand-accent/10 focus:border-brand-accent rounded-xl p-3.5 outline-none text-white text-sm">
-                      <option>Agentic AI Consulting</option>
-                      <option>Digital Transformation Strategy</option>
-                      <option>Workshop or Seminar Booking</option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="message" className="font-heading font-semibold text-sm text-slate-300">Project Objective</label>
-                    <textarea id="message" required rows="4" value={formData.message}
-                      onChange={e => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Briefly describe your requirements..."
-                      className="bg-brand-dark/50 border border-brand-accent/10 focus:border-brand-accent rounded-xl p-3.5 outline-none text-white text-sm resize-none transition-all"></textarea>
-                  </div>
-                  <button type="submit" disabled={bookingStatus === 'loading'}
-                    className="w-full py-3.5 bg-brand-accent hover:bg-brand-accent-hover text-brand-dark rounded-xl font-heading font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300">
-                    {bookingStatus === 'loading' ? (
-                      <>Scheduling... <span className="w-4 h-4 border-2 border-brand-dark border-t-transparent rounded-full animate-spin"></span></>
-                    ) : (
-                      <>Send Consultation Request <Send size={15} /></>
-                    )}
-                  </button>
-                </form>
-              )}
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="message" className="font-heading font-semibold text-sm text-slate-300">Project Objective</label>
+                      <textarea id="message" required rows="4" value={formData.message}
+                        onChange={e => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="Briefly describe your requirements..."
+                        className="bg-brand-dark/50 border border-brand-accent/10 focus:border-brand-accent rounded-xl p-3.5 outline-none text-white text-sm resize-none transition-all"></textarea>
+                    </div>
+                    <button type="submit" disabled={bookingStatus === 'loading'}
+                      className="w-full py-3.5 bg-brand-accent hover:bg-brand-accent-hover text-brand-dark rounded-xl font-heading font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300">
+                      {bookingStatus === 'loading' ? (
+                        <>Scheduling... <span className="w-4 h-4 border-2 border-brand-dark border-t-transparent rounded-full animate-spin"></span></>
+                      ) : (
+                        <>Send Consultation Request <Send size={15} /></>
+                      )}
+                    </button>
+                  </form>
+                )}
+              </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
         </div>
       </section>
+
+      {modalImg && (
+        <div
+          className={`fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 modal-overlay ${modalAnim}`}
+          onClick={closeModal}
+        >
+          <button
+            onClick={closeModal}
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/60 hover:text-brand-accent transition-colors z-10"
+            aria-label="Close modal"
+          >
+            <X size={32} strokeWidth={1.5} />
+          </button>
+          <img
+            src={modalImg}
+            alt="Gallery"
+            className={`max-w-full max-h-full object-contain rounded-2xl modal-image ${modalAnim}`}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       <Footer />
     </>

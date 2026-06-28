@@ -151,3 +151,91 @@ body {
 .hero-image-exit {
   animation: imageSlideOut 1s ease-in-out forwards;
 }
+
+/* -----------------------------------------------
+   GALLERY WALL — masonry-style columns
+----------------------------------------------- */
+.gallery-wall {
+  column-count: 2;
+  column-gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .gallery-wall {
+    column-count: 3;
+    column-gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-wall {
+    column-count: 4;
+    column-gap: 20px;
+  }
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(203, 255, 84, 0.08);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+@media (min-width: 640px) {
+  .gallery-item {
+    margin-bottom: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-item {
+    margin-bottom: 20px;
+  }
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+  border-color: rgba(203, 255, 84, 0.3);
+  box-shadow: 0 8px 30px rgba(203, 255, 84, 0.08);
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* -----------------------------------------------
+   GALLERY MODAL — zoom in / zoom out
+----------------------------------------------- */
+.modal-overlay {
+  background: rgba(3, 20, 20, 0);
+  transition: background 0.4s ease-in-out;
+}
+
+.modal-overlay.open {
+  background: rgba(3, 20, 20, 0.92);
+}
+
+.modal-overlay.closing {
+  background: rgba(3, 20, 20, 0);
+}
+
+.modal-image {
+  transform: scale(0.3);
+  opacity: 0;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.modal-image.open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-image.closing {
+  transform: scale(0.3);
+  opacity: 0;
+}
